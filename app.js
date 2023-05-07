@@ -12,15 +12,16 @@ config({
     path: "./data/config.env"
 });
 
-app.use(cors({
-    origin: [process.env.FRONTEND_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    headers: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
-    credentials: true
-}));
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    // headers: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
+    credentials: true
+}));
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/task", taskRouter);
